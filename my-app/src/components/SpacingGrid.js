@@ -1,29 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function TitlebarImageList() {
+  const [gpus, setGpus] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/gpus/')
+    .then(response => {
+      setGpus({title: response['data'][0]['title'],
+               stock: response['data'][0]['stock']});
+      // console.log(response['data'][0][])
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  })
+
+
   return (
-    <ImageList sx={{ width: 350, height: 350 }} cols={3} rowHeight={350}>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            src={`${item.img}?w=248&fit=crop&auto=format 1x,
-                ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title={item.title}
-            subtitle={item.stock}
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <h1>
+      {gpus['stock']}
+      {gpus['title']}
+    </h1>
+    // <ImageList sx={{ width: 350, height: 350 }} cols={3} rowHeight={350}>
+    //   {itemData.map((item) => (
+    //     <ImageListItem key={item.img}>
+    //       <img
+    //         src={`${item.img}?w=248&fit=crop&auto=format 1x,
+    //             ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+    //         alt={item.title}
+    //         loading="lazy"
+    //       />
+    //       <ImageListItemBar
+    //         title={item.title}
+    //         subtitle={item.stock}
+    //       />
+    //     </ImageListItem>
+    //   ))}
+    // </ImageList>
   );
-}
+};
+
 
 const itemData = [
   {
