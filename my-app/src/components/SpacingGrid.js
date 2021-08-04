@@ -22,11 +22,6 @@ export default function TitlebarImageList() {
 
 
   return (
-    // <h1>
-    //   {gpus.data.map((item) => {
-    //     console.log(item.stock)
-    //   })}
-    // </h1>
     <ImageList sx={{ width: 350, height: 350 }} cols={3} rowHeight={350}>
       {gpus.data.map((item) => (
         <ImageListItem key={item.img}>
