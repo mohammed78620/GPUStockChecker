@@ -9,10 +9,12 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const title = req.body.title;
+    const img = req.body.img;
     const stock = req.body.stock;
 
     const gpu = new Gpu({
         title,
+        img,
         stock});
     
     gpu.save()
