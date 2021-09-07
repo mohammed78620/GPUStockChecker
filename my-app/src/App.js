@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import NavBar from "./components/navbar.component"
 import GpusList from "./components/gpus-list.component"
+import GpuAdd from "./components/gpus-add.component"
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
       <NavBar/>
       <br/>
       <Route path="/" exact component={GpusList} />
+      <Route path="/create" exact component={GpuAdd} />
     </Router>
       <SpacingGrid />
     </div>
