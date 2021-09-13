@@ -5,7 +5,7 @@ const gpuSchema = new Schema({
 
     title: {type: String, required: true},
     img:   {type: String, required: true},
-    stock: {type: String, required: true},
+    stock: {type: Boolean, required: true},
 }, {
     timestamps:true,
 });

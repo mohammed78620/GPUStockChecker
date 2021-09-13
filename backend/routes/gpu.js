@@ -18,7 +18,7 @@ router.route('/add').post((req, res) => {
         stock});
     
     gpu.save()
-    .then(() => res.json('Gpu added'))
+    .then(() => res.status(201).json(gpu))
     .catch(err => res.status(400).json('Error: ' + err))
 });
 

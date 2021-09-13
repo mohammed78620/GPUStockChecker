@@ -8,7 +8,7 @@ export default function Addgpu(){
         console.log(data)
         var json = JSON.stringify({title: data.title,
                                      img: data.img,
-                                    stock: "no stock"})
+                                    stock: false})
         var config = {
         method: 'post',
         url: 'http://localhost:5000/gpus/add',

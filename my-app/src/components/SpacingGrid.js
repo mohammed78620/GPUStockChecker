@@ -11,7 +11,8 @@ export default function TitlebarImageList() {
   const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
-    axios.get('http://localhost:5000/gpus/')
+    const loadData = async () => {
+    const response = await axios.get('http://localhost:5000/gpus/')
     .then(response => {
       setGpus({data: response.data});
       setLoading(false)
@@ -22,17 +23,26 @@ export default function TitlebarImageList() {
       setHasError(true)
       setLoading(false)
     })
+    }
+    loadData()
+  
   }, [])
+
+  const getStock = ((stock) => {
+    stock = stock ?  "stock": "no stock"
+    return stock
+  })
 
 
   return (
     
-    loading ? <div>Loading...</div> : hasError ? <div>Error occured.</div> : 
-    <ImageList sx={{ width: 350, height: 350 }} rowHeight={350}>
+    loading ? <div data-testid="loading">Loading...</div> : hasError ? <div>Error occured.</div> : 
+    <ImageList data-testid="resolved" sx={{ width: 350, height: 350 }} rowHeight={350} data-testid="resolved">
       {
       gpus.data.map((item,index) => (
         <ImageListItem key={index}>
           <img
+            data-testid="resolved"
             src={`${item.img}?w=248&fit=crop&auto=format 1x,
                 ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
@@ -40,11 +50,13 @@ export default function TitlebarImageList() {
           />
           <ImageListItemBar
             title={item.title}
-            subtitle={item.stock}
+            subtitle={getStock()}
           />
         </ImageListItem>
       ))}
+      <span data-testid="resolved"></span>
     </ImageList>
+    
   );
 };
 

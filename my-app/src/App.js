@@ -16,7 +16,7 @@ function App() {
     <Router>
       <NavBar/>
       <br/>
-      <Route path="/" exact component={GpusList} />
+      <Route path="/list" exact component={GpusList} />
       <Route path="/create" exact component={GpuAdd} />
     </Router>
       <SpacingGrid />
